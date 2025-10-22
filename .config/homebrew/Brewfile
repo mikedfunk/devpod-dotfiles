@@ -10,6 +10,7 @@ brew "htop" # prettier, more powerful version of top. gets the top running proce
 brew "less" # huh, there's a newer version of less available (be sure to `brew link less`)
 brew "mise" # asdf but faster and includes direnv
 brew "multitail" # tail multiple files or tail streams in splits with pretty colors. I use this a lot.
+brew "noti" # terminal notifier
 brew "tailspin" # tail colorizer (usage: "..." | tspin)
 brew "the_silver_searcher" # awesome fast grep replacement: `ag --help` see also: ripgrep (mise version doesn't work right for some reason)
 brew "tig" # git? tig! (note: this requires asciidoc)

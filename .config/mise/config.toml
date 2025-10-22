@@ -6,7 +6,6 @@
 "aqua:bensadeh/tailspin" = "latest"
 "aqua:snyk/cli" = "latest"
 "aqua:tealdeer-rs/tealdeer" = "latest"
-"aqua:variadico/noti" = "latest"
 "ubi:abhinav/git-spice" = { version = "latest", exe = "gs", rename_exe = "git-spice" }
 "ubi:cormacrelf/dark-notify" = "latest"
 "ubi:https://github.com/plantuml/plantuml/releases/download/v1.2025.9/plantuml-1.2025.9.jar" = { version = "1.2025.9", rename_exe = "plantuml" }
@@ -23,7 +22,7 @@ gh = "latest"
 jq = "latest"
 k9s = "latest"
 kubecolor = "latest"
-neovim = "stable"
+neovim = "latest"
 opencode = "latest"
 pre-commit = "latest"
 ripgrep = "latest"
