@@ -1,0 +1,6 @@
+.config/aws/config
+.config/git/config-saatchi
+.config/kube/config
+.mailmap
+.private_vars.sh
+intelephense/licence.txt

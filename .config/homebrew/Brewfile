@@ -1,0 +1,17 @@
+# Homebrew, brew cask, and mac app store package manifest
+# vim: set foldmethod=marker:
+
+brew "curl" # http cli tool. Included with mac of course, but this gives me the updated version. Also needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864 and for asdf.
+brew "entr" # file watcher (I use this a lot in my shell functions)
+brew "git"
+brew "gpg" # used by s3cmd and yadm to encrypt stuff
+brew "grc" # generic colorizer - used to colorize ps, ls, netstat, etc.
+brew "htop" # prettier, more powerful version of top. gets the top running processes. (see my notes)
+brew "less" # huh, there's a newer version of less available (be sure to `brew link less`)
+brew "mise" # asdf but faster and includes direnv
+brew "multitail" # tail multiple files or tail streams in splits with pretty colors. I use this a lot.
+brew "tailspin" # tail colorizer (usage: "..." | tspin)
+brew "the_silver_searcher" # awesome fast grep replacement: `ag --help` see also: ripgrep (mise version doesn't work right for some reason)
+brew "tig" # git? tig! (note: this requires asciidoc)
+brew "wget" # latest version
+brew "zsh" # awesome bash shell replacement

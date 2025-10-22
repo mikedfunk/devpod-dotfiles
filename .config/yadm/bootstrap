@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+_log_info() { echo -e "$(tput setaf 2)$(tput rev)$(tput bold) \xE2\x9C\x93 $1 $(tput sgr0)"; }
+
+_install_homebrew() {
+    if ! command -v brew &>/dev/null; then
+        _log_info "Install homebrew"
+        yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+}
+
+_install_upgrade_homebrew_packages() {
+    _log_info "Installing/upgrading homebrew packages"
+    cd "$HOME" || return
+    HOMEBREW_BUNDLE_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile" brew bundle
+    cd - || return
+}
+
+_update_mise_plugins() {
+    _log_info "Updating mise plugins"
+    mise plugin update --yes
+}
+
+_install_and_upgrade_mise_dependencies() {
+    _log_info "Installing mise dependencies"
+    cd "$HOME" || return
+    mise install --yes
+    mise upgrade --yes
+    cd - || return
+}
+
+_decrypt_yadm_files() {
+    _log_info "Decrypting yadm files"
+    yadm decrypt
+}
+
+_install_homebrew
+_install_upgrade_homebrew_packages
+_update_mise_plugins
+_install_and_upgrade_mise_dependencies
+_decrypt_yadm_files
+
+_log_info "Installation complete"
