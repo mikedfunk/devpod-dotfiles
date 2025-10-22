@@ -49,3 +49,5 @@ _install_and_upgrade_mise_dependencies
 _decrypt_yadm_files
 
 _log_info "Installation complete"
+
+exit 0
