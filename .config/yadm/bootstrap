@@ -13,6 +13,7 @@ _install_homebrew() {
         _log_info "Install homebrew"
         yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         eval "$($brew_prefix/brew shellenv)"
+        eval "$(mise activate bash)"
     fi
 }
 
@@ -25,20 +26,20 @@ _install_upgrade_homebrew_packages() {
 
 _update_mise_plugins() {
     _log_info "Updating mise plugins"
-    $brew_prefix/mise plugin update --yes
+    mise plugin update --yes
 }
 
 _install_and_upgrade_mise_dependencies() {
     _log_info "Installing mise dependencies"
     cd "$HOME" || return
-    $brew_prefix/mise install --yes
-    $brew_prefix/mise upgrade --yes
+    mise install --yes
+    mise upgrade --yes
     cd - || return
 }
 
 _decrypt_yadm_files() {
     _log_info "Decrypting yadm files"
-    $brew_prefix/yadm decrypt
+    yadm decrypt
 }
 
 _install_homebrew
