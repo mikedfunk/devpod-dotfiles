@@ -3,13 +3,13 @@
 _log_info() { echo "--- $1 ---"; }
 
 if [ "$(uname -s)" = "Darwin" ]; then
-    brew=/opt/homebrew/bin/brew
+    brew_prefix=/opt/homebrew/bin/brew
 else
-    brew=/home/linuxbrew/.linuxbrew/bin/brew
+    brew_prefix=/home/linuxbrew/.linuxbrew/bin/brew
 fi
 
 _install_homebrew() {
-    if ! command -v $brew &>/dev/null; then
+    if ! command -v $brew_prefix/brew &>/dev/null; then
         _log_info "Install homebrew"
         yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
@@ -18,26 +18,26 @@ _install_homebrew() {
 _install_upgrade_homebrew_packages() {
     _log_info "Installing/upgrading homebrew packages"
     cd "$HOME" || return
-    HOMEBREW_BUNDLE_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile" $brew bundle
+    HOMEBREW_BUNDLE_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile" $brew_prefix/brew bundle
     cd - || return
 }
 
 _update_mise_plugins() {
     _log_info "Updating mise plugins"
-    mise plugin update --yes
+    $brew_prefix/mise plugin update --yes
 }
 
 _install_and_upgrade_mise_dependencies() {
     _log_info "Installing mise dependencies"
     cd "$HOME" || return
-    mise install --yes
-    mise upgrade --yes
+    $brew_prefix/mise install --yes
+    $brew_prefix/mise upgrade --yes
     cd - || return
 }
 
 _decrypt_yadm_files() {
     _log_info "Decrypting yadm files"
-    yadm decrypt
+    $brew_prefix/yadm decrypt
 }
 
 _install_homebrew
