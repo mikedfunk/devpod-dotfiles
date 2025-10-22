@@ -12,8 +12,6 @@ _install_homebrew() {
     if ! command -v $brew_prefix/brew &>/dev/null; then
         _log_info "Install homebrew"
         yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        eval "$($brew_prefix/brew shellenv)"
-        eval "$(mise activate bash)"
     fi
 }
 
@@ -21,6 +19,8 @@ _install_upgrade_homebrew_packages() {
     _log_info "Installing/upgrading homebrew packages"
     cd "$HOME" || return
     HOMEBREW_BUNDLE_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile" $brew_prefix/brew bundle
+    eval "$($brew_prefix/brew shellenv)"
+    eval "$(mise activate bash)"
     cd - || return
 }
 
