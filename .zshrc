@@ -230,7 +230,7 @@ k9s () {
 }
 
 alias y="yadm"
-compdef y="yadm"
+# compdef y="yadm"
 alias upgrades="yadm bootstrap"
 
 save-dotfiles () { yadm encrypt && yadm add -u && yadm ci -m ${1:-working} && yadm ps; }
