@@ -21,13 +21,13 @@ _install_upgrade_homebrew_packages() {
     HOMEBREW_BUNDLE_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile" $brew_prefix/brew bundle
     eval "$($brew_prefix/brew shellenv)"
     eval "$(mise activate bash)"
-    mise trust
     cd - || return
 }
 
 _update_mise_plugins() {
     _log_info "Updating mise plugins"
     mise plugin update --yes
+    mise trust
 }
 
 _install_and_upgrade_mise_dependencies() {
