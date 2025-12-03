@@ -4,6 +4,7 @@ _log_info() { echo "--- $1 ---"; }
 
 _log_info "Running yadm bootstrap script"
 _log_info "Installation complete"
+exit 0
 
 # if [ "$(uname -s)" = "Darwin" ]; then
 #     brew_prefix=/opt/homebrew/bin
