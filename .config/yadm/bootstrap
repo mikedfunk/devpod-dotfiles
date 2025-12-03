@@ -2,53 +2,56 @@
 
 _log_info() { echo "--- $1 ---"; }
 
-if [ "$(uname -s)" = "Darwin" ]; then
-    brew_prefix=/opt/homebrew/bin
-else
-    brew_prefix=/home/linuxbrew/.linuxbrew/bin
-fi
-
-_install_homebrew() {
-    if ! command -v $brew_prefix/brew &>/dev/null; then
-        _log_info "Install homebrew"
-        yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    fi
-}
-
-_install_upgrade_homebrew_packages() {
-    _log_info "Installing/upgrading homebrew packages"
-    cd "$HOME" || return
-    HOMEBREW_BUNDLE_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile" $brew_prefix/brew bundle
-    eval "$($brew_prefix/brew shellenv)"
-    eval "$(mise activate bash)"
-    cd - || return
-}
-
-_update_mise_plugins() {
-    _log_info "Updating mise plugins"
-    mise plugin update --yes
-    mise trust
-}
-
-_install_and_upgrade_mise_dependencies() {
-    _log_info "Installing mise dependencies"
-    cd "$HOME" || return
-    mise install --yes
-    mise upgrade --yes
-    cd - || return
-}
-
-_decrypt_yadm_files() {
-    _log_info "Decrypting yadm files"
-    yadm decrypt
-}
-
-_install_homebrew
-_install_upgrade_homebrew_packages
-_update_mise_plugins
-_install_and_upgrade_mise_dependencies
-_decrypt_yadm_files
-
+_log_info "Running yadm bootstrap script"
 _log_info "Installation complete"
 
-exit 0
+# if [ "$(uname -s)" = "Darwin" ]; then
+#     brew_prefix=/opt/homebrew/bin
+# else
+#     brew_prefix=/home/linuxbrew/.linuxbrew/bin
+# fi
+#
+# _install_homebrew() {
+#     if ! command -v $brew_prefix/brew &>/dev/null; then
+#         _log_info "Install homebrew"
+#         yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+#     fi
+# }
+#
+# _install_upgrade_homebrew_packages() {
+#     _log_info "Installing/upgrading homebrew packages"
+#     cd "$HOME" || return
+#     HOMEBREW_BUNDLE_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile" $brew_prefix/brew bundle
+#     eval "$($brew_prefix/brew shellenv)"
+#     eval "$(mise activate bash)"
+#     cd - || return
+# }
+#
+# _update_mise_plugins() {
+#     _log_info "Updating mise plugins"
+#     mise plugin update --yes
+#     mise trust
+# }
+#
+# _install_and_upgrade_mise_dependencies() {
+#     _log_info "Installing mise dependencies"
+#     cd "$HOME" || return
+#     mise install --yes
+#     mise upgrade --yes
+#     cd - || return
+# }
+#
+# _decrypt_yadm_files() {
+#     _log_info "Decrypting yadm files"
+#     yadm decrypt
+# }
+#
+# _install_homebrew
+# _install_upgrade_homebrew_packages
+# _update_mise_plugins
+# _install_and_upgrade_mise_dependencies
+# _decrypt_yadm_files
+#
+# _log_info "Installation complete"
+#
+# exit 0
